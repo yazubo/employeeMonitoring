@@ -48,7 +48,7 @@ public class MonitoringEmployees {
 
     private static String decrypt(String pwd) {
         BasicTextEncryptor bte = new BasicTextEncryptor();
-        bte.setPassword("WatchDog-2012");
+        bte.setPassword("EM123456");
         String decrypted = "";
         try{
             decrypted = bte.decrypt(pwd);
