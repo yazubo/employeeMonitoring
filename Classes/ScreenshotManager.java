@@ -10,10 +10,6 @@ import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
-import net.lingala.zip4j.core.ZipFile;
-import net.lingala.zip4j.model.ZipParameters;
-import net.lingala.zip4j.util.Zip4jConstants;
-import monitoringemployees.MonitoringEmployees;
 /**
  *
  * @author bherz
@@ -33,16 +29,6 @@ public class ScreenshotManager extends Thread{
             BufferedImage image = new Robot().createScreenCapture(new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
             File file = new File(fileName);
             ImageIO.write(image, "jpg", file);
-            ZipParameters parameters = new ZipParameters();
-            parameters.setCompressionMethod(Zip4jConstants.COMP_DEFLATE);
-            parameters.setCompressionLevel(Zip4jConstants.DEFLATE_LEVEL_MAXIMUM);
-            parameters.setEncryptFiles(true); 
-            parameters.setEncryptionMethod(Zip4jConstants.ENC_METHOD_AES);
-            parameters.setAesKeyStrength(Zip4jConstants.AES_STRENGTH_256);
-            parameters.setPassword(MonitoringEmployees.ZIP_PASSWORD);
-            String zipFileName = MonitoringEmployees.ZIP_DIR.substring(0, MonitoringEmployees.ZIP_DIR.length()-4)+MonitoringEmployees.Date+".zip";
-            ZipFile zf = new ZipFile(new File (zipFileName));   
-            zf.addFile(file, parameters);   
         } catch (Exception ex) {
             ex = ex;
         }
